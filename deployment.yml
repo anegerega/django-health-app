@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-health-app
+  labels:
+    app: django-health-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: django-health-app
+  template:
+    metadata:
+      labels:
+        app: django-health-app
+    spec:
+      containers:
+      - name: healthappcon
+        image: anegerega/health-app:v1
+        ports:
+        - containerPort: 8000
+
